@@ -1,8 +1,10 @@
 FROM node:22-alpine AS base
 
 # Install dependencies only
+
 FROM base AS deps
 WORKDIR /app
+RUN apk add --no-cache python3 make g++ linux-headers
 COPY package.json package-lock.json* ./
 RUN npm ci
 
